@@ -1,9 +1,9 @@
 <div id="container"></div>
 
 <script>
-    const container = document.getElementById("")
+    const container = document.getElementById("container")
 
-    fetch("", {
+    fetch("lsmp.hu/api/dashboard", {
         "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd5b3JmZnkuc3phYm9sY3MiLCJuYW1lIjoiR3nFkXJmZnkgU3phYm9sY3MiLCJwZXJtaXNzaW9uIjoiU3R1ZGVudCIsImlhdCI6MTc0MTEwODQ2NSwiZXhwIjoxNzQxMTk0ODY1fQ.HeTE8SyQ5K16xqwCLj67kBIBgruidmXDH-vNVlqTBKA"
     }).then(res => {
         container.innerHTML = res
