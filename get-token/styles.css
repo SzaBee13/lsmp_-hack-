@@ -1,0 +1,122 @@
+body {
+    font-family: "Courier New", Courier, monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#indata,
+#mfa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+#indata > div,
+#mfa > div {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#indata div,
+#indata > input,
+#mfa div,
+#mfa > input {
+    margin-bottom: 10px;
+}
+
+#indata input,
+#mfa input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#indata span,
+#mfa span {
+    margin-right: 10px;
+}
+
+#results {
+    white-space: pre-wrap;
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+button {
+    width: 150px;
+    height: 60px;
+    border: 3px solid #315cfd;
+    border-radius: 45px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: white;
+    font-size: 1.2em;
+    font-weight: 550;
+}
+
+button:hover {
+    background: #315cfd;
+    color: white;
+    font-size: 1.5em;
+}
+
+#mfa {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    color: white;
+}
+
+
+.back {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.back > h1 {
+    margin: 0;
+    color: blue;
+}
+
+.back > h1:hover {
+    cursor: pointer;
+    color: darkblue;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        padding-top: 50px;
+    }
+}
