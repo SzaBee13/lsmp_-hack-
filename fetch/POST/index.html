@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
     <title>LSMP HACK</title>
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Prism.js CSS for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
 </head>
 <body>
-    <a href="../index.html" class="back"><h1>LSMP HACK</h1></a>
-    <h1>LSMP HACK - FETCH</h1>
+    <a href="../../index.html" class="back"><h1>LSMP HACK</h1></a>
+    <h1>LSMP HACK - FETCH (POST)</h1>
     <div id="container">
         <div id="indata">
             <div>
                 <div>
                     <label for="pathInput" class="usernamelabel label">API Path</label>
                     <input type="text" value="dashboard" required="required" id="pathInput" class="styled-input">
+                </div>
+                <div>
+                    <label for="bodyInput" class="usernamelabel label">POST BODY</label>
+                    <textarea id="bodyInput" required="required" class="code-editor" rows="10">{}</textarea>
                 </div>
                 <div>
                     <label for="tokenInput" class="usernamelabel label">Authorization Token</label>
@@ -25,9 +31,12 @@
             <a href="https://wiki.lsmp.hu/en/documentation/lsmp-api/documentation" target="_blank">Expected Output</a>
         </div>
         <div id="results">
-
+            
         </div>
     </div>
+    <!-- Prism.js JavaScript for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>

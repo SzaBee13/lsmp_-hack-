@@ -66,7 +66,7 @@ function mfaLogin(mfaCode) {
 
 function createCopyButton(token) {
     result.innerHTML = `
-        <input type="text" value="${token}" id="tokenField" readonly>
+        <input type="text" value="${token}" id="tokenField" readonly class="styled-input-"/>
         <button id="copyButton">Copy Token</button>
     `;
     const copyButton = document.getElementById("copyButton");

@@ -58,10 +58,26 @@ body {
 }
 
 #results {
-    white-space: pre-wrap;
     background-color: #e0e0e0;
     padding: 10px;
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    max-height: 300px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9em;
+    font-family: "Courier New", Courier, monospace;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #f9f9f9;
+    align-items: center;
 }
 
 button {
@@ -114,6 +130,39 @@ button:hover {
     cursor: pointer;
     color: darkblue;
 }
+
+.styled-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #f9f9f9;
+}
+
+.styled-input- {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #f9f9f9;
+}
+
+.styled-input:focus {
+    border-color: #315cfd;
+    box-shadow: 0 0 5px rgba(49, 92, 253, 0.5);
+    outline: none;
+}
+
+.styled-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
 
 @media screen and (max-width: 800px) {
     body {
