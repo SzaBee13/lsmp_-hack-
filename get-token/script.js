@@ -27,13 +27,36 @@ let oauthConfig = {
   tokenEndpoint: "https://lsmp.hu/api/v2/oauth2/token"
 };
 
+function parseEnvFile(content) {
+  const env = {};
+  content.split("\n").forEach((line) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) {
+      return;
+    }
+
+    const separatorIndex = trimmed.indexOf("=");
+    if (separatorIndex === -1) {
+      return;
+    }
+
+    const key = trimmed.slice(0, separatorIndex).trim();
+    let value = trimmed.slice(separatorIndex + 1).trim();
+    value = value.replace(/^['"]|['"]$/g, "");
+    env[key] = value;
+  });
+  return env;
+}
+
 async function loadRuntimeEnv() {
   try {
-    const response = await fetch("/api/env", { cache: "no-store" });
+    const response = await fetch("/.env", { cache: "no-store" });
     if (!response.ok) {
       return {};
     }
-    return response.json();
+
+    const content = await response.text();
+    return parseEnvFile(content);
   } catch {
     return {};
   }
@@ -184,7 +207,7 @@ async function startOauth2Login() {
   const { clientId, clientSecret, redirectUri, scope, authorizeEndpoint, tokenEndpoint } = oauthConfig;
 
   if (!clientId || !redirectUri || !scope || !authorizeEndpoint || !tokenEndpoint) {
-    result.textContent = "Missing OAuth2 env config. Required: OAUTH_CLIENT_ID. Optional: OAUTH_CLIENT_SECRET, OAUTH_REDIRECT_URI, OAUTH_SCOPE, OAUTH_AUTHORIZE_URL, OAUTH_TOKEN_URL.";
+    result.textContent = "Missing OAuth2 env config. Required: OAUTH_CLIENT_ID. Optional with defaults: redirect/scope/endpoints.";
     return;
   }
 
@@ -288,12 +311,12 @@ async function initOauth2Defaults() {
   const defaultRedirect = window.location.origin + window.location.pathname;
 
   oauthConfig = {
-    clientId: env.OAUTH_CLIENT_ID || "",
-    clientSecret: env.OAUTH_CLIENT_SECRET || "",
-    redirectUri: env.OAUTH_REDIRECT_URI || defaultRedirect,
-    scope: env.OAUTH_SCOPE || oauthConfig.scope,
-    authorizeEndpoint: env.OAUTH_AUTHORIZE_URL || oauthConfig.authorizeEndpoint,
-    tokenEndpoint: env.OAUTH_TOKEN_URL || oauthConfig.tokenEndpoint
+    clientId: env.OAUTH_CLIENT_ID || env.LSMP_OAUTH_CLIENT_ID || "",
+    clientSecret: env.OAUTH_CLIENT_SECRET || env.LSMP_OAUTH_CLIENT_SECRET || "",
+    redirectUri: env.OAUTH_REDIRECT_URI || env.LSMP_OAUTH_REDIRECT_URI || defaultRedirect,
+    scope: env.OAUTH_SCOPE || env.LSMP_OAUTH_SCOPE || oauthConfig.scope,
+    authorizeEndpoint: env.OAUTH_AUTHORIZE_URL || env.LSMP_OAUTH_AUTHORIZE_URL || oauthConfig.authorizeEndpoint,
+    tokenEndpoint: env.OAUTH_TOKEN_URL || env.LSMP_OAUTH_TOKEN_URL || oauthConfig.tokenEndpoint
   };
 
   const existingToken = readStoredToken();
