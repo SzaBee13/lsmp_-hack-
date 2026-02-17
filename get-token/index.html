@@ -1,43 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-    <title>LSMP HACK</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <title>LSMP HACK</title>
 </head>
 <body>
-    <a href="../index.html" class="back"><h1>LSMP HACK</h1></a>
-    <div class="login">
-        <h1>LSMP HACK - GET TOKEN</h1>
-        <div id="container">
-            <div id="indata">
-                <div>
-                    <div>
-                        <label for="usernameField" class="usernamelabel label">Username</label>
-                        <input type="text" id="usernameField" placeholder="Enter username" required="required" class="styled-input">
-                    </div>
-                    <div>
-                        <label for="passwordField" class="passwordlabel label">Password</label>
-                        <input type="password" id="passwordField" placeholder="Enter password" required="required" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" class="styled-input">
-                    </div>
-                </div>
-                <button id="login">login</button>
-            </div> 
-            <div id="results">
+  <a href="../index.html" class="back"><h1>LSMP HACK</h1></a>
+  <div class="login">
+    <h1>LSMP HACK - GET TOKEN</h1>
 
+    <div id="container">
+      <section class="card">
+        <h2>Password Login (legacy)</h2>
+        <div id="indata">
+          <div>
+            <div>
+              <label for="usernameField" class="label">Username</label>
+              <input type="text" id="usernameField" placeholder="Enter username" required="required" class="styled-input">
             </div>
+            <div>
+              <label for="passwordField" class="label">Password</label>
+              <input type="password" id="passwordField" placeholder="Enter password" required="required" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" class="styled-input">
+            </div>
+          </div>
+          <button id="login">Login</button>
         </div>
-    </div>
+      </section>
 
-    <div id="mfa">
-        <div>
-            <label for="mfaField" class="mfaLabel label">MFA Code</label>
-            <input type="text" id="mfaField" placeholder="Enter MFA code" required="required" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" class="styled-input">
+      <section class="card">
+        <h2>OAuth2 PKCE (env configured)</h2>
+        <p class="hint">This flow is configured from Vercel Environment Variables via <code>/api/env</code> (no manual OAuth input fields).</p>
+        <div id="oauth2Form">
+          <div class="button-row">
+            <button id="oauth2Login">Start OAuth2 Login</button>
+            <button id="exchangeCode">Exchange Code</button>
+          </div>
+          <p class="hint">Required key: <code>OAUTH_CLIENT_ID</code>. Optional: <code>OAUTH_CLIENT_SECRET</code>, <code>OAUTH_REDIRECT_URI</code>, <code>OAUTH_SCOPE</code>, <code>OAUTH_AUTHORIZE_URL</code>, <code>OAUTH_TOKEN_URL</code>.</p>
+          <a href="https://wiki.lsmp.hu/en/documentation/lsmp-api-v2/Oauth2" target="_blank">OAuth2 docs</a>
         </div>
-        <button id="submit">Submit</button>
-    </div>
+      </section>
 
-    <script src="./script.js"></script>
+      <div id="results"></div>
+    </div>
+  </div>
+
+  <div id="mfa">
+    <div>
+      <label for="mfaField" class="label">MFA Code</label>
+      <input type="text" id="mfaField" placeholder="Enter MFA code" required="required" autocomplete="off" autocorrect="off" spellcheck="false" autocapitalize="off" class="styled-input">
+    </div>
+    <button id="submit">Submit</button>
+  </div>
+
+  <script src="./script.js"></script>
 </body>
 </html>
