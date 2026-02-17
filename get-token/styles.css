@@ -1,171 +1,154 @@
 body {
-    font-family: "Courier New", Courier, monospace;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-    flex-direction: column;
-    min-height: 100vh;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 #container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: min(760px, 90vw);
+}
+
+.card {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card h2 {
+  margin: 0;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 #indata,
-#mfa {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-#indata > div,
-#mfa > div {
-    margin-bottom: 20px;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-#indata div,
-#indata > input,
-#mfa div,
-#mfa > input {
-    margin-bottom: 10px;
-}
-
-#indata input,
-#mfa input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#indata span,
-#mfa span {
-    margin-right: 10px;
+#mfa,
+#oauth2Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 10px;
 }
 
 #results {
-    background-color: #e0e0e0;
-    padding: 10px;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    overflow: auto;
-    max-height: 300px;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-size: 0.9em;
-    font-family: "Courier New", Courier, monospace;
-    color: #333;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-    background-color: #f9f9f9;
-    align-items: center;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: auto;
+  max-height: 300px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 0.9em;
+  color: #333;
+  align-items: stretch;
 }
 
 button {
-    width: 150px;
-    height: 60px;
-    border: 3px solid #315cfd;
-    border-radius: 45px;
-    transition: all 0.3s;
-    cursor: pointer;
-    background: white;
-    font-size: 1.2em;
-    font-weight: 550;
+  width: 180px;
+  height: 48px;
+  border: 3px solid #315cfd;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 1rem;
+  font-weight: 550;
 }
 
 button:hover {
-    background: #315cfd;
-    color: white;
-    font-size: 1.5em;
+  background: #315cfd;
+  color: white;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 #mfa {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-    color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  color: white;
 }
 
-
 .back {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    text-decoration: none;
-    z-index: 1;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  text-decoration: none;
+  z-index: 1;
 }
 
 .back > h1 {
-    margin: 0;
-    color: blue;
+  margin: 0;
+  color: blue;
 }
 
 .back > h1:hover {
-    cursor: pointer;
-    color: darkblue;
+  cursor: pointer;
+  color: darkblue;
 }
 
-.styled-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-    background-color: #f9f9f9;
-}
-
+.styled-input,
 .styled-input- {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s, box-shadow 0.3s;
-    background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9f9f9;
 }
 
 .styled-input:focus {
-    border-color: #315cfd;
-    box-shadow: 0 0 5px rgba(49, 92, 253, 0.5);
-    outline: none;
+  border-color: #315cfd;
+  box-shadow: 0 0 5px rgba(49, 92, 253, 0.5);
+  outline: none;
 }
 
 .styled-input::placeholder {
-    color: #aaa;
-    font-style: italic;
+  color: #aaa;
+  font-style: italic;
 }
 
-
 @media screen and (max-width: 800px) {
-    body {
-        padding-top: 50px;
-    }
+  body {
+    padding-top: 70px;
+    height: auto;
+  }
 }
