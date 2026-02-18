@@ -1,47 +1,65 @@
-const container = document.getElementById("container");
 const submitButton = document.getElementById("submit");
 const tokenInput = document.getElementById("tokenInput");
 const pathInput = document.getElementById("pathInput");
 
-let path;
-let token;
+const API_BASE_URL = "https://lsmp.hu/api/v2";
+const TOKEN_STORAGE_KEY = "lsmp.auth.token";
 
-submitButton.addEventListener("click", (e) => {
-    token = document.getElementById("tokenInput").value;
-    path = document.getElementById("pathInput").value;
-    fetchData();
-});
+function sanitizePath(path) {
+  return path.replace(/^\/+/, "").replace(/^api\/v2\//, "");
+}
 
-pathInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        token = document.getElementById("tokenInput").value;
-        path = document.getElementById("pathInput").value;
-        fetchData();
-    }
-});
+function rememberToken() {
+  const token = tokenInput.value.trim();
+  if (token) {
+    localStorage.setItem(TOKEN_STORAGE_KEY, token);
+  }
+}
 
-tokenInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        token = document.getElementById("tokenInput").value;
-        path = document.getElementById("pathInput").value;
-        fetchData();
-    }
-});
+function restoreToken() {
+  const savedToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+  if (savedToken) {
+    tokenInput.value = savedToken;
+  }
+}
 
 function fetchData() {
-    if (path && token) {
-        fetch(`https://lsmp.hu/api/${path}`, {
-            headers: {
-                authorization: token,
-            },
-        })
-            .then((res) => res.json())
-            .then((jsonRes) => {
-                document.getElementById("results").innerText = JSON.stringify(
-                    jsonRes,
-                    null,
-                    2
-                );
-            });
+  const token = tokenInput.value.trim();
+  const path = sanitizePath(pathInput.value.trim());
+
+  if (!path || !token) {
+    return;
+  }
+
+  rememberToken();
+
+  fetch(`${API_BASE_URL}/${path}`, {
+    headers: {
+      Authorization: token
     }
+  })
+    .then((res) => res.json())
+    .then((jsonRes) => {
+      document.getElementById("results").innerText = JSON.stringify(jsonRes, null, 2);
+    })
+    .catch((error) => {
+      document.getElementById("results").innerText = `Request failed: ${error.message}`;
+    });
 }
+
+submitButton.addEventListener("click", fetchData);
+tokenInput.addEventListener("change", rememberToken);
+
+pathInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    fetchData();
+  }
+});
+
+tokenInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    fetchData();
+  }
+});
+
+restoreToken();
