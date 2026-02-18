@@ -1,0 +1,37 @@
+{
+  "rewrites": [
+    {
+      "source": "/.env",
+      "destination": "/api/env"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/get-token/script.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/get-token/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/api/env",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    }
+  ]
+}
